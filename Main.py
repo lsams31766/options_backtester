@@ -1,5 +1,7 @@
 #Main.py
-from Data import client, get_stock_prices
+from Data import *
+from Trade import ZeroDTE_Credit_Spread
+
 '''
 - Retrieve Stock and Option data using Data.py module
 - Runtart a back test, given parmeters including strategy
@@ -9,6 +11,11 @@ from Data import client, get_stock_prices
 - Represent data via Chart
 '''
 
-ticker = 'AAPL'
-df = get_stock_prices(ticker,client,'2024-01-01','2024-12-31')
-print(df.head())
+pnl = ZeroDTE_Credit_Spread('QQQ','2024-05-14','2024-05-15')
+print('Current PnL', pnl)
+
+# do another trade, calculate running pnl
+pnl2 = ZeroDTE_Credit_Spread('QQQ','2024-05-15','2024-05-16')
+print('Current PnL', pnl + pnl2)
+
+
